@@ -393,7 +393,18 @@
       return;
     }
 
-    if (isQualified()) { openWA(); return; }
+    if (isQualified()) {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({
+        event: 'form_submit',
+        form_name: 'quiz_qualificacao',
+        lead_nome: answers['nome'],
+        lead_perfil: answers['1'],
+        lead_estrutura: answers['2'],
+      });
+      openWA();
+      return;
+    }
 
     const box = document.getElementById('disqualify-box')!;
     document.getElementById('dq-online')!.classList.toggle('hidden', answers['3'] === 'sim');
