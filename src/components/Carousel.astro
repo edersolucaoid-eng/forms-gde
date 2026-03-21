@@ -6,13 +6,18 @@
 
   <div class="car-wrapper">
     <div class="car-track" id="carousel-track">
-      <div class="car-slide"><img src="/images/fde6eb9c-4f4c-4cdf-971c-25b987e357bd.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
-      <div class="car-slide"><img src="/images/WhatsApp Image 2024-09-28 at 17.09.56.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
-      <div class="car-slide"><img src="/images/WhatsApp Image 2024-09-28 at 17.10.06.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
-      <!-- duplicates -->
-      <div class="car-slide"><img src="/images/fde6eb9c-4f4c-4cdf-971c-25b987e357bd.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
-      <div class="car-slide"><img src="/images/WhatsApp Image 2024-09-28 at 17.09.56.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
-      <div class="car-slide"><img src="/images/WhatsApp Image 2024-09-28 at 17.10.06.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.35.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.35 (1).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.35 (2).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.36.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.36 (1).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.36 (2).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.37.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.37 (1).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.37 (2).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.37 (3).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.45.37 (4).jpeg" alt="Resultado Método Goleiro 2.0" /></div>
+      <div class="car-slide"><img src="/images/WhatsApp Image 2026-03-20 at 23.47.32.jpeg" alt="Resultado Método Goleiro 2.0" /></div>
     </div>
     <button class="car-btn car-prev" id="car-prev" aria-label="Anterior">&#8592;</button>
     <button class="car-btn car-next" id="car-next" aria-label="Próximo">&#8594;</button>
@@ -20,6 +25,15 @@
 
   <div class="car-dots" id="car-dots">
     <button class="dot active"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
+    <button class="dot"></button>
     <button class="dot"></button>
     <button class="dot"></button>
   </div>
@@ -35,10 +49,10 @@
 
   .car-wrapper { position: relative; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
   .car-track { display: flex; transition: transform .5s cubic-bezier(.4,0,.2,1); will-change: transform; }
-  .car-slide { flex: 0 0 100%; aspect-ratio: 4/3; overflow: hidden; background: #080808; }
+  .car-slide { flex: 0 0 100%; aspect-ratio: 1/1; overflow: hidden; background: #080808; }
   .car-slide img {
     width: 100%; height: 100%; object-fit: cover;
-    object-position: top center; display: block; transition: transform .6s ease;
+    object-position: center center; display: block; transition: transform .6s ease;
   }
   .car-slide img:hover { transform: scale(1.04); }
 
@@ -60,7 +74,7 @@
   .car-prev { left: 10px; }
   .car-next { right: 10px; }
 
-  .car-dots { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+  .car-dots { display: flex; justify-content: center; gap: 5px; margin-top: 12px; flex-wrap: wrap; }
   .dot {
     width: 6px; height: 6px; border-radius: 1px;
     border: none; background: var(--muted); cursor: pointer;
@@ -70,7 +84,7 @@
 </style>
 
 <script>
-  const TOTAL = 3;
+  const TOTAL = 12;
   let current = 0;
   let autoTimer: number;
 
