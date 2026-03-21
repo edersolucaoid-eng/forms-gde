@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Método EFV | Preparação Física para Goleiros</title>
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #111111;
+      --card:       #1A1A1A;
+      --neon:       #DFFF00;
+      --neon-dim:   #b8d400;
+      --white:      #FFFFFF;
+      --gray:       #A0A0A0;
+      --border:     #2C2C2C;
+      --selected-bg:#1e2800;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background texture / grain ──────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(223,255,0,.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────── */
+    .page {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 16px 80px;
+      gap: 36px;
+    }
+
+    /* ── Badge ────────────────────────────────────────────────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(223,255,0,.1);
+      border: 1px solid rgba(223,255,0,.35);
+      border-radius: 999px;
+      padding: 6px 18px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--neon);
+    }
+    .badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--neon);
+      box-shadow: 0 0 8px var(--neon);
+    }
+
+    /* ── Hero text ────────────────────────────────────────────── */
+    .hero { text-align: center; max-width: 780px; }
+
+    .headline {
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .headline span {
+      color: var(--neon);
+      text-shadow: 0 0 24px rgba(223,255,0,.5);
+    }
+
+    .subheadline {
+      margin-top: 20px;
+      font-size: clamp(.95rem, 2.2vw, 1.15rem);
+      color: var(--gray);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Stats strip ──────────────────────────────────────────── */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 32px;
+    }
+    .stat {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: .82rem;
+      color: var(--gray);
+      font-weight: 500;
+    }
+    .stat-icon {
+      font-size: 1rem;
+      filter: grayscale(0);
+    }
+    .stat strong { color: var(--white); }
+
+    /* ── Card ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px 48px;
+      width: 100%;
+      max-width: 560px;
+      box-shadow:
+        0 0 0 1px rgba(223,255,0,.06),
+        0 24px 80px rgba(0,0,0,.6),
+        inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--neon);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* ── Questions ────────────────────────────────────────────── */
+    .questions { display: flex; flex-direction: column; gap: 32px; }
+
+    .question { display: flex; flex-direction: column; gap: 10px; }
+
+    .q-label {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+    .q-label span {
+      color: var(--neon);
+      margin-right: 6px;
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .options.row { flex-direction: row; flex-wrap: wrap; }
+
+    /* ── Option button ────────────────────────────────────────── */
+    .opt {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      cursor: pointer;
+      transition: all .18s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      flex: 1 1 auto;
+      min-width: 140px;
+      position: relative;
+      overflow: hidden;
+    }
+    .opt:hover {
+      border-color: rgba(223,255,0,.4);
+      background: rgba(223,255,0,.06);
+    }
+    .opt.selected {
+      border-color: var(--neon);
+      background: var(--selected-bg);
+    }
+    .opt.selected .opt-indicator {
+      background: var(--neon);
+      border-color: var(--neon);
+      box-shadow: 0 0 10px rgba(223,255,0,.6);
+    }
+    .opt.selected .opt-indicator::after { opacity: 1; }
+    .opt.selected .opt-text { color: var(--neon); }
+
+    .opt-indicator {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      border: 2px solid #3a3a3a;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      transition: all .18s ease;
+    }
+    .opt-indicator::after {
+      content: '';
+      width: 6px;
+      height: 10px;
+      border-right: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      transform: rotate(45deg) translate(-1px,-1px);
+      opacity: 0;
+      transition: opacity .12s ease;
+    }
+
+    .opt-emoji { font-size: 1.2rem; flex-shrink: 0; }
+
+    .opt-text {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #d0d0d0;
+      transition: color .18s ease;
+      line-height: 1.3;
+    }
+
+    /* ── Divider ──────────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 4px 0;
+    }
+
+    /* ── CTA Button ───────────────────────────────────────────── */
+    .cta-wrap { margin-top: 12px; }
+
+    .cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 20px 24px;
+      background: var(--neon);
+      color: #0a0a0a;
+      font-size: 1.05rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .18s ease, transform .12s ease, box-shadow .18s ease;
+      animation: pulse 2.4s ease-in-out infinite;
+      box-shadow:
+        0 0 0 0 rgba(223,255,0,.5),
+        0 8px 32px rgba(223,255,0,.25);
+      line-height: 1.2;
+      text-align: center;
+    }
+    .cta-btn:hover {
+      background: #ecff33;
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 0 0 rgba(223,255,0,.5),
+        0 14px 40px rgba(223,255,0,.4);
+      animation: none;
+    }
+    .cta-btn:active { transform: translateY(0); }
+
+    .cta-btn svg {
+      width: 22px; height: 22px;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(223,255,0,.55), 0 8px 32px rgba(223,255,0,.25); }
+      55%  { box-shadow: 0 0 0 14px rgba(223,255,0,0), 0 8px 32px rgba(223,255,0,.25); }
+      100% { box-shadow: 0 0 0 0 rgba(223,255,0,0),   0 8px 32px rgba(223,255,0,.25); }
+    }
+
+    .cta-sub {
+      margin-top: 12px;
+      text-align: center;
+      font-size: .76rem;
+      color: #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .cta-sub svg { opacity: .5; }
+
+    /* ── Disqualify box ───────────────────────────────────────── */
+    .disqualify-box {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      background: rgba(255, 80, 80, .06);
+      border: 1.5px solid rgba(255, 80, 80, .25);
+      border-radius: 14px;
+      padding: 24px 20px;
+      margin-bottom: 16px;
+      animation: fadeIn .3s ease;
+    }
+    .disqualify-box.visible { display: flex; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .dq-icon { font-size: 1.6rem; text-align: center; }
+
+    .dq-title {
+      font-size: .95rem;
+      font-weight: 800;
+      color: var(--white);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .dq-items { display: flex; flex-direction: column; gap: 12px; }
+
+    .dq-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: .85rem;
+      color: var(--gray);
+      line-height: 1.6;
+      padding: 12px;
+      background: rgba(255,255,255,.03);
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+    }
+    .dq-item strong { color: var(--white); display: block; margin-bottom: 2px; }
+    .dq-item.hidden { display: none; }
+    .dq-bullet { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+
+    .dq-question {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .dq-confirm-btn {
+      width: 100%;
+      padding: 15px 20px;
+      background: transparent;
+      border: 1.5px solid var(--neon);
+      color: var(--neon);
+      font-size: .92rem;
+      font-weight: 800;
+      border-radius: 12px;
+      cursor: pointer;
+      letter-spacing: .03em;
+      transition: all .18s ease;
+      text-transform: uppercase;
+    }
+    .dq-confirm-btn:hover {
+      background: rgba(223,255,0,.1);
+    }
+
+    .dq-cancel {
+      text-align: center;
+      font-size: .78rem;
+      color: #555;
+      cursor: pointer;
+      transition: color .15s ease;
+    }
+    .dq-cancel:hover { color: var(--gray); }
+
+    /* ── Progress indicator ───────────────────────────────────── */
+    .progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: #2a2a2a;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--neon);
+      border-radius: 99px;
+      transition: width .4s ease;
+      box-shadow: 0 0 8px var(--neon);
+    }
+    .progress-label {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+    .progress-label span { color: var(--neon); }
+
+    /* ── Proof footer ─────────────────────────────────────────── */
+    .proof {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 6px 20px;
+      font-size: .78rem;
+      color: #555;
+    }
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .proof-dot { width: 4px; height: 4px; border-radius: 50%; background: #333; }
+
+    /* ── Quem Somos ───────────────────────────────────────────── */
+    .quem-somos {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .qs-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(223,255,0,.08);
+      border: 1px solid rgba(223,255,0,.25);
+      border-radius: 999px;
+      padding: 5px 16px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--neon);
+    }
+
+    .qs-card {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(223,255,0,.05), 0 20px 60px rgba(0,0,0,.5);
+    }
+
+    /* Image strip */
+    .qs-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+    .qs-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: brightness(.75) saturate(1.1);
+    }
+    .qs-img-glow {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, var(--card) 100%);
+    }
+
+    /* Content */
+    .qs-content {
+      padding: 24px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .qs-handle {
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--neon);
+      letter-spacing: .06em;
+    }
+
+    .qs-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+    }
+
+    .qs-text {
+      font-size: .9rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+    .qs-text strong { color: var(--white); }
+    .qs-highlight {
+      color: var(--neon);
+      font-weight: 700;
+    }
+
+    /* Stats row */
+    .qs-stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .qs-stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 14px 8px;
+      gap: 4px;
+    }
+    .qs-stat-num {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--neon);
+      line-height: 1;
+    }
+    .qs-stat-lbl {
+      font-size: .7rem;
+      color: var(--gray);
+      text-align: center;
+      font-weight: 500;
+    }
+    .qs-stat-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    /* Instagram button */
+    .qs-ig-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      align-self: flex-start;
+      background: transparent;
+      border: 1.5px solid #444;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      transition: all .18s ease;
+      letter-spacing: .02em;
+    }
+    .qs-ig-btn:hover {
+      border-color: var(--neon);
+      color: var(--neon);
+      background: rgba(223,255,0,.06);
+    }
+
+    /* ── Carousel ─────────────────────────────────────────────── */
+    .carousel-section {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .carousel-header { text-align: center; }
+
+    .carousel-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--white);
+    }
+    .carousel-title-icon { font-size: 1.3rem; }
+
+    .carousel-subtitle {
+      margin-top: 6px;
+      font-size: .82rem;
+      color: var(--gray);
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 0 1px rgba(223,255,0,.06), 0 16px 48px rgba(0,0,0,.5);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform .5s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: #0d0d0d;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform .6s ease;
+    }
+    .carousel-slide img:hover { transform: scale(1.03); }
+
+    /* Gradient overlays */
+    .carousel-wrapper::before,
+    .carousel-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .carousel-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(17,17,17,.6), transparent);
+    }
+    .carousel-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(17,17,17,.6), transparent);
+    }
+
+    /* Nav buttons */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 3;
+      background: rgba(26,26,26,.85);
+      border: 1.5px solid var(--border);
+      color: var(--white);
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: grid;
+      place-items: center;
+      transition: all .18s ease;
+      backdrop-filter: blur(6px);
+    }
+    .carousel-btn:hover {
+      background: rgba(223,255,0,.15);
+      border-color: var(--neon);
+      color: var(--neon);
+    }
+    .carousel-prev { left: 12px; }
+    .carousel-next { right: 12px; }
+
+    /* Dots */
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: #333;
+      cursor: pointer;
+      transition: all .25s ease;
+      padding: 0;
+    }
+    .dot.active {
+      background: var(--neon);
+      width: 24px;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(223,255,0,.5);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .card { padding: 28px 20px 36px; border-radius: 16px; }
+      .options.row { flex-direction: column; }
+      .cta-btn { font-size: .95rem; padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<main class="page">
+
+  <!-- Badge -->
+  <div class="badge">Vagas Limitadas · Turma 2026</div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1 class="headline">
+      Ganhe <span>Explosão, Força</span><br>e Velocidade<br>Debaixo das Traves
+    </h1>
+    <p class="subheadline">
+      O único programa de preparação física <strong style="color:#fff">100% online exclusivo para goleiros</strong>.
+      Responda à avaliação rápida abaixo e veja se você tem o perfil para o Método&nbsp;EFV.
+    </p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><span class="stat-icon">⚡</span><strong>+1.200</strong> goleiros treinados</div>
+    <div class="stat"><span class="stat-icon">🏆</span><strong>98%</strong> de aprovação</div>
+    <div class="stat"><span class="stat-icon">📱</span>100% online</div>
+    <div class="stat"><span class="stat-icon">🎯</span>Método exclusivo</div>
+  </div>
+
+  <!-- Card -->
+  <div class="card" id="quiz-card">
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="progress-label"><span id="answered-count">0</span>/4 respondidas</div>
+    </div>
+
+    <div class="card-title">📋 Avaliação de Perfil</div>
+
+    <div class="questions">
+
+      <!-- Q1 -->
+      <div class="question" data-q="1">
+        <div class="q-label"><span>01</span> Perfil</div>
+        <div class="q-text">Você é goleiro amador, profissional ou mãe/pai de goleiro?</div>
+        <div class="options row">
+          <div class="opt" data-q="1" data-v="amador" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">🥅</span>
+            <span class="opt-text">Amador</span>
+          </div>
+          <div class="opt" data-q="1" data-v="profissional" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">⭐</span>
+            <span class="opt-text">Profissional</span>
+          </div>
+          <div class="opt" data-q="1" data-v="mae_pai" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">👨‍👩‍👦</span>
+            <span class="opt-text">Mãe / Pai de goleiro</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Q2 -->
+      <div class="question" data-q="2">
+        <div class="q-label"><span>02</span> Estrutura</div>
+        <div class="q-text">Você tem acesso a academia ou prefere treinar em casa?</div>
+        <div class="options">
+          <div class="opt" data-q="2" data-v="academia" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">🏋️</span>
+            <span class="opt-text">Tenho acesso a academia</span>
+          </div>
+          <div class="opt" data-q="2" data-v="casa" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">🏠</span>
+            <span class="opt-text">Prefiro treinar em casa</span>
+          </div>
+          <div class="opt" data-q="2" data-v="ambos" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">🔄</span>
+            <span class="opt-text">Treino nos dois ambientes</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Q3 -->
+      <div class="question" data-q="3">
+        <div class="q-label"><span>03</span> Formato</div>
+        <div class="q-text">Você entende que o acompanhamento é 100% online?</div>
+        <div class="options row">
+          <div class="opt" data-q="3" data-v="sim" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">✅</span>
+            <span class="opt-text">Sim, entendo e prefiro assim</span>
+          </div>
+          <div class="opt" data-q="3" data-v="nao" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">❓</span>
+            <span class="opt-text">Tenho dúvidas sobre isso</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Q4 -->
+      <div class="question" data-q="4">
+        <div class="q-label"><span>04</span> Investimento</div>
+        <div class="q-text">Você está pronto para investir a partir de R$397 no seu desempenho?</div>
+        <div class="options row">
+          <div class="opt" data-q="4" data-v="sim" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">🚀</span>
+            <span class="opt-text">Sim, estou pronto!</span>
+          </div>
+          <div class="opt" data-q="4" data-v="talvez" onclick="select(this)">
+            <div class="opt-indicator"></div>
+            <span class="opt-emoji">🤔</span>
+            <span class="opt-text">Preciso saber mais antes</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /questions -->
+
+    <!-- CTA -->
+    <div class="cta-wrap" style="margin-top:36px;">
+
+      <!-- Bloco de desqualificação (oculto por padrão) -->
+      <div class="disqualify-box" id="disqualify-box">
+        <div class="dq-icon">⚠️</div>
+        <div class="dq-title">Antes de continuar, precisa entender dois pontos:</div>
+        <div class="dq-items">
+          <div class="dq-item" id="dq-online">
+            <span class="dq-bullet">📱</span>
+            <div>
+              <strong>O Método EFV é 100% online.</strong> Todo acompanhamento, treinos e suporte acontecem pelo aplicativo e WhatsApp. Não há presença física. Se você entende e aceita isso, pode seguir em frente.
+            </div>
+          </div>
+          <div class="dq-item" id="dq-invest">
+            <span class="dq-bullet">💰</span>
+            <div>
+              <strong>O investimento começa em R$397.</strong> Esse é o valor de entrada para transformar seu desempenho debaixo das traves com um método exclusivo. Não é um custo — é o preço de parar de perder espaço para goleiros que já estão se preparando.
+            </div>
+          </div>
+        </div>
+        <div class="dq-question">Entendeu e quer continuar mesmo assim?</div>
+        <button class="dq-confirm-btn" onclick="confirmAndSend()">
+          Sim, entendi — quero falar no WhatsApp
+        </button>
+        <div class="dq-cancel" onclick="hideDQ()">← Voltar e revisar minhas respostas</div>
+      </div>
+
+      <!-- Botão principal -->
+      <a href="#" class="cta-btn" id="cta-btn" onclick="submitForm(event)">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.143 1.535 5.88L.057 23.929a.5.5 0 0 0 .614.614l6.05-1.478A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.865-.582-5.44-1.586l-.388-.243-4.022.981.999-3.92-.264-.404A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+        </svg>
+        Enviar Avaliação e Falar no WhatsApp
+      </a>
+      <div class="cta-sub">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#555" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 1C8.676 1 6 3.676 6 7v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-2V7c0-3.324-2.676-6-6-6zm0 2c2.276 0 4 1.724 4 4v1H8V7c0-2.276 1.724-4 4-4zm0 9a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+        </svg>
+        Sem spam · Seus dados estão seguros
+      </div>
+    </div>
+
+  </div><!-- /card -->
+
+  <!-- Quem Somos -->
+  <div class="quem-somos">
+
+    <div class="qs-badge">Conheça o Método</div>
+
+    <div class="qs-card">
+      <div class="qs-img-wrap">
+        <img src="images/Captura de tela 2026-03-20 092056.png" alt="Goleiro de Elite - @goleirodeeliteof" class="qs-img" />
+        <div class="qs-img-glow"></div>
+      </div>
+
+      <div class="qs-content">
+        <div class="qs-handle">@goleirodeeliteof</div>
+        <h2 class="qs-title">Goleiro de Elite — Preparação Física Exclusiva para Goleiros</h2>
+        <p class="qs-text">
+          Somos especialistas em musculação e preparação física <strong>100% voltada para goleiros</strong>. Desenvolvemos o <span class="qs-highlight">Método EFV</span> — Explosão, Força e Velocidade — para transformar o desempenho de goleiros amadores e profissionais em todo o Brasil.
+        </p>
+        <p class="qs-text">
+          Com mais de <strong>1.200 goleiros treinados</strong> e uma metodologia online que se adapta à sua rotina e estrutura, o Método EFV já mudou o jogo para centenas de atletas debaixo das traves.
+        </p>
+
+        <div class="qs-stats">
+          <div class="qs-stat">
+            <span class="qs-stat-num">73K</span>
+            <span class="qs-stat-lbl">Seguidores</span>
+          </div>
+          <div class="qs-stat-divider"></div>
+          <div class="qs-stat">
+            <span class="qs-stat-num">+1.200</span>
+            <span class="qs-stat-lbl">Goleiros treinados</span>
+          </div>
+          <div class="qs-stat-divider"></div>
+          <div class="qs-stat">
+            <span class="qs-stat-num">100%</span>
+            <span class="qs-stat-lbl">Online</span>
+          </div>
+        </div>
+
+        <a href="https://instagram.com/goleirodeeliteof" target="_blank" class="qs-ig-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          Ver no Instagram
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Carousel -->
+  <div class="carousel-section">
+    <div class="carousel-header">
+      <div class="carousel-title">
+        <span class="carousel-title-icon">📸</span>
+        Resultado no corpo e na performance
+      </div>
+      <div class="carousel-subtitle">Transformações reais de goleiros do Método EFV</div>
+    </div>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="carousel-track">
+        <div class="carousel-slide">
+          <img src="images/fde6eb9c-4f4c-4cdf-971c-25b987e357bd.jpeg" alt="Resultado goleiro Método EFV" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/WhatsApp Image 2024-09-28 at 17.09.56.jpeg" alt="Resultado goleiro Método EFV" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/WhatsApp Image 2024-09-28 at 17.10.06.jpeg" alt="Resultado goleiro Método EFV" />
+        </div>
+        <!-- duplicates for seamless loop -->
+        <div class="carousel-slide">
+          <img src="images/fde6eb9c-4f4c-4cdf-971c-25b987e357bd.jpeg" alt="Resultado goleiro Método EFV" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/WhatsApp Image 2024-09-28 at 17.09.56.jpeg" alt="Resultado goleiro Método EFV" />
+        </div>
+        <div class="carousel-slide">
+          <img src="images/WhatsApp Image 2024-09-28 at 17.10.06.jpeg" alt="Resultado goleiro Método EFV" />
+        </div>
+      </div>
+
+      <!-- Nav arrows -->
+      <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)" aria-label="Anterior">&#8592;</button>
+      <button class="carousel-btn carousel-next" onclick="carouselMove(1)" aria-label="Próximo">&#8594;</button>
+    </div>
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carousel-dots">
+      <button class="dot active" onclick="carouselGoTo(0)"></button>
+      <button class="dot" onclick="carouselGoTo(1)"></button>
+      <button class="dot" onclick="carouselGoTo(2)"></button>
+    </div>
+  </div>
+
+  <!-- Proof -->
+  <div class="proof">
+    <div class="proof-item">🔒 100% seguro</div>
+    <div class="proof-dot"></div>
+    <div class="proof-item">📱 Funciona no celular</div>
+    <div class="proof-dot"></div>
+    <div class="proof-item">⚡ Resposta em minutos</div>
+    <div class="proof-dot"></div>
+    <div class="proof-item">🏆 +1.200 goleiros</div>
+  </div>
+
+</main>
+
+<script>
+  const answers = {};
+
+  function select(el) {
+    const q = el.dataset.q;
+    // deselect siblings
+    document.querySelectorAll(`.opt[data-q="${q}"]`).forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[q] = el.dataset.v;
+    updateProgress();
+    // subtle scroll to next unanswered
+    scrollToNextQuestion(parseInt(q));
+  }
+
+  function updateProgress() {
+    const count = Object.keys(answers).length;
+    document.getElementById('answered-count').textContent = count;
+    document.getElementById('progress-fill').style.width = (count / 4 * 100) + '%';
+  }
+
+  function scrollToNextQuestion(currentQ) {
+    if (currentQ < 4) {
+      const next = document.querySelector(`.question[data-q="${currentQ + 1}"]`);
+      if (next) {
+        setTimeout(() => {
+          next.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+      }
+    }
+  }
+
+  function isQualified() {
+    return answers['3'] === 'sim' && answers['4'] === 'sim';
+  }
+
+  function openWhatsApp() {
+    const labels = {
+      '1': { amador: 'Goleiro Amador', profissional: 'Goleiro Profissional', mae_pai: 'Mãe/Pai de Goleiro' },
+      '2': { academia: 'Tenho academia', casa: 'Treino em casa', ambos: 'Academia e casa' },
+      '3': { sim: 'Sim, entendo que é online', nao: 'Tenho dúvidas sobre o formato online' },
+      '4': { sim: 'Sim, pronto para investir', talvez: 'Preciso saber mais' },
+    };
+    const msg = `Olá! Quero saber mais sobre o *Método EFV* 🥅\n\n` +
+      `*Perfil:* ${labels['1'][answers['1']]}\n` +
+      `*Estrutura:* ${labels['2'][answers['2']]}\n` +
+      `*Formato online:* ${labels['3'][answers['3']]}\n` +
+      `*Investimento:* ${labels['4'][answers['4']]}`;
+    const phone = '5565981351676';
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  function submitForm(e) {
+    e.preventDefault();
+
+    // Verificar se respondeu tudo
+    const count = Object.keys(answers).length;
+    if (count < 4) {
+      const card = document.getElementById('quiz-card');
+      card.style.animation = 'shake .4s ease';
+      setTimeout(() => card.style.animation = '', 400);
+      for (let i = 1; i <= 4; i++) {
+        if (!answers[i]) {
+          document.querySelector(`.question[data-q="${i}"]`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+          break;
+        }
+      }
+      return;
+    }
+
+    // Lead qualificado → WhatsApp direto
+    if (isQualified()) {
+      openWhatsApp();
+      return;
+    }
+
+    // Lead desqualificado → mostrar bloco de educação
+    const box = document.getElementById('disqualify-box');
+    // Mostrar só os itens relevantes
+    document.getElementById('dq-online').classList.toggle('hidden', answers['3'] === 'sim');
+    document.getElementById('dq-invest').classList.toggle('hidden', answers['4'] === 'sim');
+    box.classList.add('visible');
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Esconder botão principal temporariamente
+    document.getElementById('cta-btn').style.opacity = '.3';
+    document.getElementById('cta-btn').style.pointerEvents = 'none';
+  }
+
+  function confirmAndSend() {
+    // Forçar como qualificado após confirmação manual
+    openWhatsApp();
+  }
+
+  function hideDQ() {
+    document.getElementById('disqualify-box').classList.remove('visible');
+    document.getElementById('cta-btn').style.opacity = '1';
+    document.getElementById('cta-btn').style.pointerEvents = 'auto';
+    document.getElementById('quiz-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+
+<script>
+  // ── Carousel ──────────────────────────────────────────────────
+  const TOTAL = 3;
+  let current = 0;
+  let autoTimer;
+
+  function carouselRender() {
+    document.getElementById('carousel-track').style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function carouselMove(dir) {
+    current = (current + dir + TOTAL) % TOTAL;
+    carouselRender();
+    resetAuto();
+  }
+
+  function carouselGoTo(idx) {
+    current = idx;
+    carouselRender();
+    resetAuto();
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => carouselMove(1), 3500);
+  }
+
+  // Touch swipe
+  let touchStartX = 0;
+  const track = document.getElementById('carousel-track');
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) carouselMove(diff > 0 ? 1 : -1);
+  });
+
+  resetAuto();
+</script>
+
+<style>
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%      { transform: translateX(-8px); }
+    40%      { transform: translateX(8px); }
+    60%      { transform: translateX(-5px); }
+    80%      { transform: translateX(5px); }
+  }
+</style>
+
+</body>
+</html>
