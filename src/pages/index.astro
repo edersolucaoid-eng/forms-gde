@@ -1,17 +1,60 @@
 ---
-
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Quiz from '../components/Quiz.astro';
+import QuemSomos from '../components/QuemSomos.astro';
+import Carousel from '../components/Carousel.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <main class="page">
+
+    <Hero />
+
+    <div class="hr"></div>
+
+    <Quiz />
+
+    <div class="hr"></div>
+
+    <QuemSomos />
+
+    <div class="hr"></div>
+
+    <Carousel />
+
+    <div class="proof-bar reveal" style="transition-delay:.4s">
+      <span>🔒 100% seguro</span>
+      <span>·</span>
+      <span>📱 Mobile-first</span>
+      <span>·</span>
+      <span>⚡ Resposta em minutos</span>
+      <span>·</span>
+      <span>🏆 +1.200 goleiros</span>
+    </div>
+
+  </main>
+</Base>
+
+<style>
+  .proof-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .63rem;
+    color: var(--muted);
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+  .proof-bar span { color: var(--gray); }
+</style>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>

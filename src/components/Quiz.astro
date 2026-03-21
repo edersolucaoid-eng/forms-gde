@@ -1,0 +1,318 @@
+---
+---
+<div class="card reveal" id="quiz-card">
+
+  <div class="card-label">Avaliação de Perfil</div>
+
+  <div class="prog-row">
+    <div class="prog-track">
+      <div class="prog-fill" id="progress-fill"></div>
+    </div>
+    <div class="prog-label"><span id="answered-count">0</span>/4</div>
+  </div>
+
+  <div class="questions">
+
+    <!-- Q1 -->
+    <div class="question" data-q="1">
+      <div class="q-num">// 01 — Perfil</div>
+      <div class="q-text">Você é goleiro amador, profissional ou mãe/pai de goleiro?</div>
+      <div class="options row">
+        <div class="opt" data-q="1" data-v="amador"><div class="opt-box"></div><span class="opt-ico">🥅</span><span class="opt-label">Amador</span></div>
+        <div class="opt" data-q="1" data-v="profissional"><div class="opt-box"></div><span class="opt-ico">⭐</span><span class="opt-label">Profissional</span></div>
+        <div class="opt" data-q="1" data-v="mae_pai"><div class="opt-box"></div><span class="opt-ico">👨‍👩‍👦</span><span class="opt-label">Mãe / Pai</span></div>
+      </div>
+    </div>
+
+    <div class="qdiv"></div>
+
+    <!-- Q2 -->
+    <div class="question" data-q="2">
+      <div class="q-num">// 02 — Estrutura</div>
+      <div class="q-text">Você tem acesso a academia ou prefere treinar em casa?</div>
+      <div class="options">
+        <div class="opt" data-q="2" data-v="academia"><div class="opt-box"></div><span class="opt-ico">🏋️</span><span class="opt-label">Tenho acesso a academia</span></div>
+        <div class="opt" data-q="2" data-v="casa"><div class="opt-box"></div><span class="opt-ico">🏠</span><span class="opt-label">Prefiro treinar em casa</span></div>
+        <div class="opt" data-q="2" data-v="ambos"><div class="opt-box"></div><span class="opt-ico">🔄</span><span class="opt-label">Treino nos dois ambientes</span></div>
+      </div>
+    </div>
+
+    <div class="qdiv"></div>
+
+    <!-- Q3 -->
+    <div class="question" data-q="3">
+      <div class="q-num">// 03 — Formato</div>
+      <div class="q-text">Você entende que o acompanhamento é 100% online?</div>
+      <div class="options row">
+        <div class="opt" data-q="3" data-v="sim"><div class="opt-box"></div><span class="opt-ico">✅</span><span class="opt-label">Sim, entendo e prefiro assim</span></div>
+        <div class="opt" data-q="3" data-v="nao"><div class="opt-box"></div><span class="opt-ico">❓</span><span class="opt-label">Tenho dúvidas sobre isso</span></div>
+      </div>
+    </div>
+
+    <div class="qdiv"></div>
+
+    <!-- Q4 -->
+    <div class="question" data-q="4">
+      <div class="q-num">// 04 — Investimento</div>
+      <div class="q-text">Você está pronto para investir a partir de R$397 no seu desempenho?</div>
+      <div class="options row">
+        <div class="opt" data-q="4" data-v="sim"><div class="opt-box"></div><span class="opt-ico">🚀</span><span class="opt-label">Sim, estou pronto!</span></div>
+        <div class="opt" data-q="4" data-v="talvez"><div class="opt-box"></div><span class="opt-ico">🤔</span><span class="opt-label">Preciso saber mais antes</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <!-- Disqualify box -->
+    <div class="dq-box" id="disqualify-box">
+      <div class="dq-head">⚠ Antes de continuar</div>
+      <div class="dq-item" id="dq-online">
+        <span class="dq-ico">📱</span>
+        <div><strong>O Método EFV é 100% online.</strong> Todo acompanhamento, treinos e suporte acontecem pelo app e WhatsApp. Sem presença física.</div>
+      </div>
+      <div class="dq-item" id="dq-invest">
+        <span class="dq-ico">💰</span>
+        <div><strong>O investimento começa em R$397.</strong> Não é um custo — é o preço de parar de perder espaço para goleiros que já estão se preparando.</div>
+      </div>
+      <div class="dq-q">Entendeu e quer continuar mesmo assim?</div>
+      <button class="dq-confirm" id="dq-confirm-btn">Sim, entendi — quero falar no WhatsApp</button>
+      <div class="dq-back" id="dq-back-btn">← Voltar e revisar minhas respostas</div>
+    </div>
+
+    <!-- Main CTA -->
+    <a href="#" class="cta-btn" id="cta-btn">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.143 1.535 5.88L.057 23.929a.5.5 0 0 0 .614.614l6.05-1.478A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.865-.582-5.44-1.586l-.388-.243-4.022.981.999-3.92-.264-.404A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      Enviar Avaliação e Falar no WhatsApp
+    </a>
+    <div class="cta-micro">🔒 SEM SPAM · SEUS DADOS ESTÃO SEGUROS</div>
+  </div>
+
+</div>
+
+<style>
+  .card {
+    width: 100%; max-width: 580px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 4px; padding: 36px 32px 44px;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 80px; height: 3px; background: var(--neon);
+  }
+  .card::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 80px; background: var(--neon);
+  }
+
+  .card-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem; font-weight: 700; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--neon);
+    margin-bottom: 24px; display: flex; align-items: center; gap: 10px;
+  }
+  .card-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .prog-row { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+  .prog-track { flex: 1; height: 3px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .prog-fill {
+    height: 100%; width: 0%; background: var(--neon);
+    border-radius: 99px; transition: width .5s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 0 8px var(--neon);
+  }
+  .prog-label {
+    font-family: 'JetBrains Mono', monospace; font-size: .65rem; color: var(--gray);
+  }
+  .prog-label span { color: var(--neon); }
+
+  .questions { display: flex; flex-direction: column; gap: 28px; }
+  .question  { display: flex; flex-direction: column; gap: 8px; }
+  .q-num {
+    font-family: 'JetBrains Mono', monospace; font-size: .62rem;
+    font-weight: 700; color: var(--neon); letter-spacing: .15em; text-transform: uppercase;
+  }
+  .q-text { font-size: 1.1rem; font-weight: 700; color: var(--white); line-height: 1.35; }
+
+  .options { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+  .options.row { flex-direction: row; flex-wrap: wrap; }
+
+  .opt {
+    display: flex; align-items: center; gap: 10px;
+    border: 1px solid var(--border); border-radius: 3px;
+    padding: 13px 16px; cursor: pointer;
+    transition: border-color .15s, background .15s;
+    user-select: none; -webkit-tap-highlight-color: transparent;
+    flex: 1 1 auto; min-width: 130px; background: transparent;
+  }
+  .opt:hover { border-color: rgba(223,255,0,.35); background: var(--neon-dim); }
+  .opt.selected { border-color: var(--neon); background: var(--selected); }
+  .opt.selected .opt-box { background: var(--neon); border-color: var(--neon); }
+  .opt.selected .opt-box::after { opacity: 1; }
+  .opt.selected .opt-label { color: var(--neon); }
+
+  .opt-box {
+    width: 18px; height: 18px; border: 1.5px solid var(--muted);
+    border-radius: 2px; flex-shrink: 0;
+    display: grid; place-items: center; transition: all .15s;
+  }
+  .opt-box::after {
+    content: ''; width: 5px; height: 9px;
+    border-right: 2px solid #0a0a0a; border-bottom: 2px solid #0a0a0a;
+    transform: rotate(45deg) translate(-1px,-1px); opacity: 0; transition: opacity .12s;
+  }
+  .opt-ico  { font-size: 1rem; flex-shrink: 0; }
+  .opt-label { font-size: .95rem; font-weight: 600; color: #bbb; transition: color .15s; }
+
+  .qdiv { height: 1px; background: var(--border); }
+
+  /* Disqualify */
+  .dq-box {
+    display: none; flex-direction: column; gap: 14px;
+    border: 1px solid rgba(255,60,60,.3); background: rgba(255,60,60,.06);
+    border-radius: 4px; padding: 22px 20px;
+    margin-bottom: 14px; animation: fadeUp .3s ease;
+  }
+  .dq-box.visible { display: flex; }
+  .dq-head { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .04em; color: var(--white); }
+  .dq-item {
+    display: flex; gap: 10px; font-size: .88rem; color: var(--gray);
+    line-height: 1.6; padding: 12px; border: 1px solid var(--border);
+    border-radius: 3px; background: rgba(0,0,0,.3);
+  }
+  .dq-item.hidden { display: none; }
+  .dq-item strong { color: var(--white); font-weight: 700; display: block; }
+  .dq-ico { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+  .dq-q { font-size: .9rem; font-weight: 700; color: var(--white); text-align: center; }
+  .dq-confirm {
+    width: 100%; padding: 14px; background: transparent;
+    border: 1px solid var(--neon); color: var(--neon);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .95rem; font-weight: 800; letter-spacing: .06em;
+    text-transform: uppercase; border-radius: 3px; cursor: pointer; transition: background .15s;
+  }
+  .dq-confirm:hover { background: var(--neon-dim); }
+  .dq-back {
+    text-align: center; font-size: .75rem; color: var(--muted);
+    cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: color .15s;
+  }
+  .dq-back:hover { color: var(--gray); }
+
+  /* CTA */
+  .cta-wrap { margin-top: 32px; }
+  .cta-btn {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: 100%; padding: 20px 24px; background: var(--neon);
+    color: #0a0a0a; font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem; letter-spacing: .08em; text-transform: uppercase;
+    border: none; border-radius: 3px; cursor: pointer; text-decoration: none;
+    transition: background .15s, transform .1s;
+    animation: pulse 2.6s ease-in-out infinite;
+    box-shadow: 0 0 0 0 rgba(223,255,0,.5), 0 8px 40px rgba(223,255,0,.2);
+    line-height: 1;
+  }
+  .cta-btn:hover { background: #eeff22; transform: translateY(-2px); animation: none; }
+  .cta-btn:active { transform: translateY(0); }
+
+  .cta-micro {
+    margin-top: 10px; text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .62rem; color: var(--muted); letter-spacing: .08em;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 28px 18px 36px; }
+    .options.row { flex-direction: column; }
+    .cta-btn { font-size: 1.15rem; }
+  }
+</style>
+
+<script>
+  const answers: Record<string, string> = {};
+
+  function selectOpt(el: HTMLElement) {
+    const q = el.dataset.q!;
+    document.querySelectorAll<HTMLElement>(`.opt[data-q="${q}"]`).forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[q] = el.dataset.v!;
+    updateProgress();
+    scrollNext(parseInt(q));
+  }
+
+  function updateProgress() {
+    const count = Object.keys(answers).length;
+    document.getElementById('answered-count')!.textContent = String(count);
+    (document.getElementById('progress-fill') as HTMLElement).style.width = (count / 4 * 100) + '%';
+  }
+
+  function scrollNext(q: number) {
+    if (q < 4) {
+      const next = document.querySelector<HTMLElement>(`.question[data-q="${q + 1}"]`);
+      if (next) setTimeout(() => next.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+    }
+  }
+
+  function isQualified() { return answers['3'] === 'sim' && answers['4'] === 'sim'; }
+
+  function openWA() {
+    const labels: Record<string, Record<string, string>> = {
+      '1': { amador: 'Goleiro Amador', profissional: 'Goleiro Profissional', mae_pai: 'Mãe/Pai de Goleiro' },
+      '2': { academia: 'Tenho academia', casa: 'Treino em casa', ambos: 'Academia e casa' },
+      '3': { sim: 'Sim, entendo que é online', nao: 'Tenho dúvidas sobre o formato online' },
+      '4': { sim: 'Sim, pronto para investir', talvez: 'Preciso saber mais' },
+    };
+    const msg = `Olá! Quero saber mais sobre o *Método EFV* 🥅\n\n` +
+      `*Perfil:* ${labels['1'][answers['1']]}\n` +
+      `*Estrutura:* ${labels['2'][answers['2']]}\n` +
+      `*Formato online:* ${labels['3'][answers['3']]}\n` +
+      `*Investimento:* ${labels['4'][answers['4']]}`;
+    window.open(`https://wa.me/5565981351676?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+
+  // Wire up option clicks
+  document.querySelectorAll<HTMLElement>('.opt').forEach(opt => {
+    opt.addEventListener('click', () => selectOpt(opt));
+  });
+
+  // CTA click
+  document.getElementById('cta-btn')!.addEventListener('click', (e) => {
+    e.preventDefault();
+    const count = Object.keys(answers).length;
+    if (count < 4) {
+      const card = document.getElementById('quiz-card')!;
+      card.style.animation = 'shake .4s ease';
+      setTimeout(() => card.style.animation = '', 400);
+      for (let i = 1; i <= 4; i++) {
+        if (!answers[String(i)]) {
+          document.querySelector<HTMLElement>(`.question[data-q="${i}"]`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          break;
+        }
+      }
+      return;
+    }
+    if (isQualified()) { openWA(); return; }
+
+    const box = document.getElementById('disqualify-box')!;
+    document.getElementById('dq-online')!.classList.toggle('hidden', answers['3'] === 'sim');
+    document.getElementById('dq-invest')!.classList.toggle('hidden', answers['4'] === 'sim');
+    box.classList.add('visible');
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const btn = document.getElementById('cta-btn') as HTMLElement;
+    btn.style.opacity = '.3';
+    btn.style.pointerEvents = 'none';
+  });
+
+  document.getElementById('dq-confirm-btn')!.addEventListener('click', openWA);
+
+  document.getElementById('dq-back-btn')!.addEventListener('click', () => {
+    document.getElementById('disqualify-box')!.classList.remove('visible');
+    const btn = document.getElementById('cta-btn') as HTMLElement;
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
+    document.getElementById('quiz-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
