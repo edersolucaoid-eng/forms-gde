@@ -283,9 +283,12 @@
     }
     updateProgress();
     // scroll para Q1 ao digitar o nome
-    if (val.length === 1) {
+  });
+
+  nomeInput.addEventListener('blur', () => {
+    if (nomeInput.value.trim().length > 0) {
       const q1 = document.querySelector<HTMLElement>('.question[data-q="1"]');
-      if (q1) setTimeout(() => q1.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+      if (q1) setTimeout(() => q1.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
     }
   });
 
