@@ -242,10 +242,10 @@
   }
   .dq-confirm:hover { background: var(--neon-dim); }
   .dq-back {
-    text-align: center; font-size: .75rem; color: var(--muted);
+    text-align: center; font-size: .75rem; color: var(--gray);
     cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: color .15s;
   }
-  .dq-back:hover { color: var(--gray); }
+  .dq-back:hover { color: var(--white); }
 
   /* CTA */
   .cta-wrap { margin-top: 32px; }
@@ -266,7 +266,7 @@
   .cta-micro {
     margin-top: 10px; text-align: center;
     font-family: 'JetBrains Mono', monospace;
-    font-size: .62rem; color: var(--muted); letter-spacing: .08em;
+    font-size: .62rem; color: var(--gray); letter-spacing: .08em;
   }
 
   .guarantee {
@@ -355,9 +355,14 @@
     window.open(`https://wa.me/5565981351676?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
-  // Wire up option clicks
+  // Wire up option clicks + keyboard accessibility
   document.querySelectorAll<HTMLElement>('.opt').forEach(opt => {
+    opt.setAttribute('role', 'button');
+    opt.setAttribute('tabindex', '0');
     opt.addEventListener('click', () => selectOpt(opt));
+    opt.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectOpt(opt); }
+    });
   });
 
   // CTA click
