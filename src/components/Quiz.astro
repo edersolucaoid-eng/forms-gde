@@ -107,6 +107,9 @@
     </a>
     <div class="cta-micro">🔒 SEM SPAM · SEUS DADOS ESTÃO SEGUROS</div>
 
+    <!-- SellFlux anchor oculto (script pode vincular aqui) -->
+    <a id="sellflux-trigger" style="display:none" href="#"></a>
+
     <!-- Guarantee -->
     <div class="guarantee">
       <div class="guarantee-icon">🛡</div>
@@ -340,18 +343,18 @@
   function isQualified() { return answers['3'] === 'sim' && answers['4'] === 'sim'; }
 
   function openWA() {
+    // Tenta acionar o modal SellFlux
+    const sf = (window as any).SellFlux || (window as any).sellflux || (window as any).ScriptGame;
+    if (sf && typeof sf.open === 'function') {
+      sf.open({ nome: answers['nome'] });
+      return;
+    }
+    // Fallback: clica no anchor oculto que o SellFlux possa ter vinculado
+    const anchor = document.getElementById('sellflux-trigger') as HTMLElement | null;
+    if (anchor) { anchor.click(); return; }
+    // Último fallback: abre WhatsApp diretamente
     const nome = answers['nome'] || 'Não informado';
-    const labels: Record<string, Record<string, string>> = {
-      '1': { amador: 'Goleiro Amador', profissional: 'Goleiro Profissional', mae_pai: 'Mãe/Pai de Goleiro' },
-      '2': { academia: 'Tenho academia', casa: 'Treino em casa', ambos: 'Academia e casa' },
-      '3': { sim: 'Sim, entendo que é online', nao: 'Tenho dúvidas sobre o formato online' },
-      '4': { sim: 'Sim, estou pronto para conhecer o programa', nao: 'Não no momento' },
-    };
-    const msg = `Olá! Me chamo *${nome}* e quero saber mais sobre o *Método Goleiro 2.0* 🥅\n\n` +
-      `*Perfil:* ${labels['1'][answers['1']]}\n` +
-      `*Estrutura:* ${labels['2'][answers['2']]}\n` +
-      `*Formato online:* ${labels['3'][answers['3']]}\n` +
-      `*Investimento:* ${labels['4'][answers['4']]}`;
+    const msg = `Olá! Me chamo *${nome}* e quero saber mais sobre o *Método Goleiro 2.0* 🥅`;
     window.open(`https://wa.me/5565981351676?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
