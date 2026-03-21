@@ -63,6 +63,33 @@
 
   </div>
 
+  <!-- SellFlux Capture Form (aparece quando qualificado) -->
+  <div class="capture-wrap" id="capture-wrap">
+    <div class="capture-heading">Ótimo perfil! Preencha abaixo para falar com nosso especialista:</div>
+    <form
+      method="post"
+      action="https://webhook.sellflux.app/v2/webhook/form/dd4b0c469c5da3d225bc29b22e4128c1?not_query=true&redirect_url=https%3A%2F%2Fgoleirodeelite.com"
+      class="sf-form"
+    >
+      <input type="hidden" name="custom_perfil" id="sf-perfil" value="" />
+      <input type="hidden" name="custom_estrutura" id="sf-estrutura" value="" />
+
+      <div class="sf-field">
+        <input type="text" id="name-2" name="name" placeholder="Seu nome" required />
+      </div>
+      <div class="sf-field">
+        <input type="email" id="email-2" name="email" placeholder="Seu melhor e-mail" required />
+      </div>
+      <div class="sf-phone">
+        <select id="ddi-2" class="sf-ddi"></select>
+        <input type="tel" id="tel-2" name="phone" data-phone-with-ddi="" maxlength="15" placeholder="(00) 00000-0000" required />
+      </div>
+      <input type="submit" value="FALAR COM ESPECIALISTA AGORA" class="sf-submit" />
+      <div class="cta-micro">🔒 SEM SPAM · SEUS DADOS ESTÃO SEGUROS</div>
+      <script src="https://webhook.sellflux.app/v2/script_form.js" is:inline></script>
+    </form>
+  </div>
+
   <!-- CTA -->
   <div class="cta-wrap">
     <!-- Disqualify box -->
@@ -77,19 +104,15 @@
         <div><strong>O investimento começa em R$300.</strong> Não é um custo — é o preço de parar de perder espaço para goleiros que já estão se preparando.</div>
       </div>
       <div class="dq-q">Entendeu e quer continuar mesmo assim?</div>
-      <button class="dq-confirm" id="dq-confirm-btn">Sim, entendi — quero falar no WhatsApp</button>
+      <button class="dq-confirm" id="dq-confirm-btn">Sim, entendi — continuar</button>
       <div class="dq-back" id="dq-back-btn">← Voltar e revisar minhas respostas</div>
     </div>
 
-    <!-- Main CTA -->
+    <!-- Main CTA (oculto quando form aparece) -->
     <a href="#" class="cta-btn" id="cta-btn">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.136.559 4.143 1.535 5.88L.057 23.929a.5.5 0 0 0 .614.614l6.05-1.478A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.865-.582-5.44-1.586l-.388-.243-4.022.981.999-3.92-.264-.404A9.955 9.955 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
-      </svg>
       Falar com Especialista Agora
     </a>
-    <div class="cta-micro">🔒 SEM SPAM · SEUS DADOS ESTÃO SEGUROS</div>
+    <div class="cta-micro" id="cta-micro-main">🔒 SEM SPAM · SEUS DADOS ESTÃO SEGUROS</div>
 
     <!-- Guarantee -->
     <div class="guarantee">
@@ -267,6 +290,78 @@
   }
   .guarantee-text { font-size: .82rem; color: var(--gray); line-height: 1.6; }
 
+  /* ── SellFlux Capture Form ── */
+  .capture-wrap {
+    display: none;
+    margin-top: 28px;
+    border: 1px solid rgba(223,255,0,.25);
+    border-radius: 4px;
+    padding: 24px 20px;
+    background: rgba(223,255,0,.03);
+    animation: fadeUp .4s ease;
+  }
+  .capture-wrap.visible { display: block; }
+
+  .capture-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--neon); text-transform: uppercase;
+    letter-spacing: .06em; margin-bottom: 18px;
+  }
+
+  .sf-form { display: flex; flex-direction: column; gap: 12px; }
+
+  .sf-field input,
+  .sf-phone input,
+  .sf-phone select {
+    width: 100%;
+    background: #161616;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .sf-field input:focus,
+  .sf-phone input:focus { border-color: var(--neon); }
+  .sf-field input::placeholder,
+  .sf-phone input::placeholder { color: var(--gray); }
+
+  .sf-phone { display: flex; gap: 0; }
+  .sf-phone select {
+    max-width: 90px;
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+    background: #1a1a1a;
+    color: var(--white);
+    cursor: pointer;
+  }
+  .sf-phone input {
+    border-radius: 0 3px 3px 0;
+    flex: 1;
+  }
+
+  .sf-submit {
+    width: 100%;
+    background: var(--neon);
+    color: #0A0A0A;
+    border: none;
+    border-radius: 3px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: .08em;
+    padding: 16px;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: background .15s, transform .15s;
+    box-shadow: 0 0 20px rgba(223,255,0,.3);
+  }
+  .sf-submit:hover { background: #eeff22; transform: translateY(-2px); }
+  .sf-submit:active { transform: translateY(0); }
+
   @media (max-width: 480px) {
     .card { padding: 28px 18px 36px; }
     .options.row { flex-direction: column; }
@@ -302,15 +397,23 @@
 
   function isQualified() { return answers['3'] === 'sim' && answers['4'] === 'sim'; }
 
-  function triggerSellFlux() {
-    // Procura botão injetado pelo script_game.js do SellFlux e clica
-    const injected = document.querySelector<HTMLElement>(
-      '[id*="sf"],[id*="sellflux"],[class*="sf-"],[class*="sellflux"],[data-sf],[data-sellflux]'
-    );
-    if (injected) { injected.click(); return; }
-    // Fallback: WhatsApp
-    const msg = encodeURIComponent('Olá! Quero saber mais sobre o *Método Goleiro 2.0* 🥅');
-    window.open(`https://wa.me/5565981351676?text=${msg}`, '_blank');
+  function showCaptureForm() {
+    const wrap = document.getElementById('capture-wrap')!;
+    const ctaBtn = document.getElementById('cta-btn') as HTMLElement;
+    const ctaMicro = document.getElementById('cta-micro-main') as HTMLElement;
+    // Preenche campos ocultos com respostas do quiz
+    (document.getElementById('sf-perfil') as HTMLInputElement).value = answers['1'] || '';
+    (document.getElementById('sf-estrutura') as HTMLInputElement).value = answers['2'] || '';
+    // Dispara evento GTM
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'form_submit', form_name: 'quiz_qualificacao', lead_perfil: answers['1'], lead_estrutura: answers['2'] });
+    // Mostra formulário, oculta CTA
+    wrap.classList.add('visible');
+    ctaBtn.style.display = 'none';
+    ctaMicro.style.display = 'none';
+    setTimeout(() => wrap.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+    // Foca no primeiro campo
+    setTimeout(() => (document.getElementById('name-2') as HTMLInputElement)?.focus(), 400);
   }
 
   // Wire up options
@@ -341,17 +444,7 @@
       return;
     }
 
-    if (isQualified()) {
-      (window as any).dataLayer = (window as any).dataLayer || [];
-      (window as any).dataLayer.push({
-        event: 'form_submit',
-        form_name: 'quiz_qualificacao',
-        lead_perfil: answers['1'],
-        lead_estrutura: answers['2'],
-      });
-      triggerSellFlux();
-      return;
-    }
+    if (isQualified()) { showCaptureForm(); return; }
 
     const box = document.getElementById('disqualify-box')!;
     document.getElementById('dq-online')!.classList.toggle('hidden', answers['3'] === 'sim');
@@ -363,7 +456,7 @@
     btn.style.pointerEvents = 'none';
   });
 
-  document.getElementById('dq-confirm-btn')!.addEventListener('click', triggerSellFlux);
+  document.getElementById('dq-confirm-btn')!.addEventListener('click', showCaptureForm);
 
   document.getElementById('dq-back-btn')!.addEventListener('click', () => {
     document.getElementById('disqualify-box')!.classList.remove('visible');
