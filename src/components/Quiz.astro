@@ -8,10 +8,26 @@
     <div class="prog-track">
       <div class="prog-fill" id="progress-fill"></div>
     </div>
-    <div class="prog-label"><span id="answered-count">0</span>/4</div>
+    <div class="prog-label"><span id="answered-count">0</span>/5</div>
   </div>
 
   <div class="questions">
+
+    <!-- Nome -->
+    <div class="question" id="q-nome">
+      <div class="q-num">// 00 — Identificação</div>
+      <div class="q-text">Qual é o seu nome?</div>
+      <input
+        type="text"
+        id="input-nome"
+        class="nome-input"
+        placeholder="Digite seu nome..."
+        autocomplete="off"
+        inputmode="text"
+      />
+    </div>
+
+    <div class="qdiv"></div>
 
     <!-- Q1 -->
     <div class="question" data-q="1">
@@ -54,10 +70,10 @@
     <!-- Q4 -->
     <div class="question" data-q="4">
       <div class="q-num">// 04 — Investimento</div>
-      <div class="q-text">Você está pronto para investir a partir de R$397 no seu desempenho?</div>
-      <div class="options row">
-        <div class="opt" data-q="4" data-v="sim"><div class="opt-box"></div><span class="opt-ico">🚀</span><span class="opt-label">Sim, estou pronto!</span></div>
-        <div class="opt" data-q="4" data-v="talvez"><div class="opt-box"></div><span class="opt-ico">🤔</span><span class="opt-label">Preciso saber mais antes</span></div>
+      <div class="q-text">Nossos pacotes partem de R$300 e não são mensalidade — é um investimento único por período. Isso está dentro do que você consideraria investir na sua evolução como goleiro?</div>
+      <div class="options">
+        <div class="opt" data-q="4" data-v="sim"><div class="opt-box"></div><span class="opt-ico">🚀</span><span class="opt-label">Sim, estou pronto para conhecer o programa</span></div>
+        <div class="opt" data-q="4" data-v="nao"><div class="opt-box"></div><span class="opt-ico">🚫</span><span class="opt-label">Não no momento</span></div>
       </div>
     </div>
 
@@ -170,6 +186,26 @@
 
   .qdiv { height: 1px; background: var(--border); }
 
+  /* Nome input */
+  .nome-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 13px 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    outline: none;
+    transition: border-color .15s;
+    margin-top: 6px;
+    letter-spacing: .02em;
+  }
+  .nome-input::placeholder { color: var(--muted); font-weight: 400; }
+  .nome-input:focus { border-color: var(--neon); }
+  .nome-input.filled { border-color: rgba(223,255,0,.4); }
+
   /* Disqualify */
   .dq-box {
     display: none; flex-direction: column; gap: 14px;
@@ -233,6 +269,25 @@
 
 <script>
   const answers: Record<string, string> = {};
+  const TOTAL = 5; // nome + 4 perguntas
+
+  // Nome input — conta como resposta ao digitar
+  const nomeInput = document.getElementById('input-nome') as HTMLInputElement;
+  nomeInput.addEventListener('input', () => {
+    const val = nomeInput.value.trim();
+    nomeInput.classList.toggle('filled', val.length > 0);
+    if (val.length > 0) {
+      answers['nome'] = val;
+    } else {
+      delete answers['nome'];
+    }
+    updateProgress();
+    // scroll para Q1 ao digitar o nome
+    if (val.length === 1) {
+      const q1 = document.querySelector<HTMLElement>('.question[data-q="1"]');
+      if (q1) setTimeout(() => q1.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+    }
+  });
 
   function selectOpt(el: HTMLElement) {
     const q = el.dataset.q!;
@@ -246,7 +301,7 @@
   function updateProgress() {
     const count = Object.keys(answers).length;
     document.getElementById('answered-count')!.textContent = String(count);
-    (document.getElementById('progress-fill') as HTMLElement).style.width = (count / 4 * 100) + '%';
+    (document.getElementById('progress-fill') as HTMLElement).style.width = (count / TOTAL * 100) + '%';
   }
 
   function scrollNext(q: number) {
@@ -259,13 +314,14 @@
   function isQualified() { return answers['3'] === 'sim' && answers['4'] === 'sim'; }
 
   function openWA() {
+    const nome = answers['nome'] || 'Não informado';
     const labels: Record<string, Record<string, string>> = {
       '1': { amador: 'Goleiro Amador', profissional: 'Goleiro Profissional', mae_pai: 'Mãe/Pai de Goleiro' },
       '2': { academia: 'Tenho academia', casa: 'Treino em casa', ambos: 'Academia e casa' },
       '3': { sim: 'Sim, entendo que é online', nao: 'Tenho dúvidas sobre o formato online' },
-      '4': { sim: 'Sim, pronto para investir', talvez: 'Preciso saber mais' },
+      '4': { sim: 'Sim, estou pronto para conhecer o programa', nao: 'Não no momento' },
     };
-    const msg = `Olá! Quero saber mais sobre o *Método EFV* 🥅\n\n` +
+    const msg = `Olá! Me chamo *${nome}* e quero saber mais sobre o *Método EFV* 🥅\n\n` +
       `*Perfil:* ${labels['1'][answers['1']]}\n` +
       `*Estrutura:* ${labels['2'][answers['2']]}\n` +
       `*Formato online:* ${labels['3'][answers['3']]}\n` +
@@ -281,8 +337,19 @@
   // CTA click
   document.getElementById('cta-btn')!.addEventListener('click', (e) => {
     e.preventDefault();
+
+    // Validar nome
+    if (!answers['nome']) {
+      nomeInput.focus();
+      nomeInput.style.borderColor = 'rgba(255,80,80,.6)';
+      setTimeout(() => nomeInput.style.borderColor = '', 1500);
+      document.getElementById('q-nome')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Validar perguntas
     const count = Object.keys(answers).length;
-    if (count < 4) {
+    if (count < TOTAL) {
       const card = document.getElementById('quiz-card')!;
       card.style.animation = 'shake .4s ease';
       setTimeout(() => card.style.animation = '', 400);
@@ -294,6 +361,7 @@
       }
       return;
     }
+
     if (isQualified()) { openWA(); return; }
 
     const box = document.getElementById('disqualify-box')!;
