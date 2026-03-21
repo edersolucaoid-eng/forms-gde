@@ -8,26 +8,10 @@
     <div class="prog-track">
       <div class="prog-fill" id="progress-fill"></div>
     </div>
-    <div class="prog-label"><span id="answered-count">0</span>/5</div>
+    <div class="prog-label"><span id="answered-count">0</span>/4</div>
   </div>
 
   <div class="questions">
-
-    <!-- Nome -->
-    <div class="question" id="q-nome">
-      <div class="q-num">// 00 — Identificação</div>
-      <div class="q-text">Qual é o seu nome?</div>
-      <input
-        type="text"
-        id="input-nome"
-        class="nome-input"
-        placeholder="Digite seu nome..."
-        autocomplete="off"
-        inputmode="text"
-      />
-    </div>
-
-    <div class="qdiv"></div>
 
     <!-- Q1 -->
     <div class="question" data-q="1">
@@ -106,9 +90,6 @@
       Falar com Especialista Agora
     </a>
     <div class="cta-micro">🔒 SEM SPAM · SEUS DADOS ESTÃO SEGUROS</div>
-
-    <!-- SellFlux anchor oculto (script pode vincular aqui) -->
-    <a id="sellflux-trigger" style="display:none" href="#"></a>
 
     <!-- Guarantee -->
     <div class="guarantee">
@@ -295,28 +276,7 @@
 
 <script>
   const answers: Record<string, string> = {};
-  const TOTAL = 5; // nome + 4 perguntas
-
-  // Nome input — conta como resposta ao digitar
-  const nomeInput = document.getElementById('input-nome') as HTMLInputElement;
-  nomeInput.addEventListener('input', () => {
-    const val = nomeInput.value.trim();
-    nomeInput.classList.toggle('filled', val.length > 0);
-    if (val.length > 0) {
-      answers['nome'] = val;
-    } else {
-      delete answers['nome'];
-    }
-    updateProgress();
-    // scroll para Q1 ao digitar o nome
-  });
-
-  nomeInput.addEventListener('blur', () => {
-    if (nomeInput.value.trim().length > 0) {
-      const q1 = document.querySelector<HTMLElement>('.question[data-q="1"]');
-      if (q1) setTimeout(() => q1.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
-    }
-  });
+  const TOTAL = 4;
 
   function selectOpt(el: HTMLElement) {
     const q = el.dataset.q!;
@@ -342,23 +302,18 @@
 
   function isQualified() { return answers['3'] === 'sim' && answers['4'] === 'sim'; }
 
-  function openWA() {
-    // Tenta acionar o modal SellFlux
-    const sf = (window as any).SellFlux || (window as any).sellflux || (window as any).ScriptGame;
-    if (sf && typeof sf.open === 'function') {
-      sf.open({ nome: answers['nome'] });
-      return;
-    }
-    // Fallback: clica no anchor oculto que o SellFlux possa ter vinculado
-    const anchor = document.getElementById('sellflux-trigger') as HTMLElement | null;
-    if (anchor) { anchor.click(); return; }
-    // Último fallback: abre WhatsApp diretamente
-    const nome = answers['nome'] || 'Não informado';
-    const msg = `Olá! Me chamo *${nome}* e quero saber mais sobre o *Método Goleiro 2.0* 🥅`;
-    window.open(`https://wa.me/5565981351676?text=${encodeURIComponent(msg)}`, '_blank');
+  function triggerSellFlux() {
+    // Procura botão injetado pelo script_game.js do SellFlux e clica
+    const injected = document.querySelector<HTMLElement>(
+      '[id*="sf"],[id*="sellflux"],[class*="sf-"],[class*="sellflux"],[data-sf],[data-sellflux]'
+    );
+    if (injected) { injected.click(); return; }
+    // Fallback: WhatsApp
+    const msg = encodeURIComponent('Olá! Quero saber mais sobre o *Método Goleiro 2.0* 🥅');
+    window.open(`https://wa.me/5565981351676?text=${msg}`, '_blank');
   }
 
-  // Wire up option clicks + keyboard accessibility
+  // Wire up options
   document.querySelectorAll<HTMLElement>('.opt').forEach(opt => {
     opt.setAttribute('role', 'button');
     opt.setAttribute('tabindex', '0');
@@ -372,16 +327,6 @@
   document.getElementById('cta-btn')!.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // Validar nome
-    if (!answers['nome']) {
-      nomeInput.focus();
-      nomeInput.style.borderColor = 'rgba(255,80,80,.6)';
-      setTimeout(() => nomeInput.style.borderColor = '', 1500);
-      document.getElementById('q-nome')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
-
-    // Validar perguntas
     const count = Object.keys(answers).length;
     if (count < TOTAL) {
       const card = document.getElementById('quiz-card')!;
@@ -401,11 +346,10 @@
       (window as any).dataLayer.push({
         event: 'form_submit',
         form_name: 'quiz_qualificacao',
-        lead_nome: answers['nome'],
         lead_perfil: answers['1'],
         lead_estrutura: answers['2'],
       });
-      openWA();
+      triggerSellFlux();
       return;
     }
 
@@ -419,7 +363,7 @@
     btn.style.pointerEvents = 'none';
   });
 
-  document.getElementById('dq-confirm-btn')!.addEventListener('click', openWA);
+  document.getElementById('dq-confirm-btn')!.addEventListener('click', triggerSellFlux);
 
   document.getElementById('dq-back-btn')!.addEventListener('click', () => {
     document.getElementById('disqualify-box')!.classList.remove('visible');
