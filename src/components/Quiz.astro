@@ -58,7 +58,7 @@
       <div class="q-text">Nossos pacotes partem de R$300 — investimento único, sem mensalidade. Você está pronto para investir no seu desenvolvimento como goleiro?</div>
       <div class="options">
         <div class="opt" data-q="4" data-v="sim"><div class="opt-box"></div><span class="opt-ico">🚀</span><span class="opt-label">Sim, estou pronto</span></div>
-        <div class="opt" data-q="4" data-v="nao"><div class="opt-box"></div><span class="opt-ico">❓</span><span class="opt-label">Preciso entender melhor o que está incluso</span></div>
+        <div class="opt" data-q="4" data-v="nao"><div class="opt-box"></div><span class="opt-ico">🚫</span><span class="opt-label">Não é o meu momento</span></div>
       </div>
     </div>
 
@@ -104,9 +104,8 @@
         <span class="dq-ico">💪</span>
         <div><strong>Plano de musculação exclusivo para goleiros a partir de R$300.</strong> Não é um treino genérico — é um programa desenvolvido especificamente para o seu perfil de goleiro, com acompanhamento individualizado.</div>
       </div>
-      <div class="dq-q">Quer conversar com nosso time e entender melhor?</div>
-      <button class="dq-confirm" id="dq-confirm-btn">Sim, entendi — continuar</button>
-      <div class="dq-back" id="dq-back-btn">← Voltar e revisar minhas respostas</div>
+      <div class="dq-q">Quando estiver pronto, volte e responda o quiz novamente.</div>
+      <div class="dq-back" id="dq-back-btn">← Revisar minhas respostas</div>
     </div>
 
     <!-- Main CTA (oculto quando form aparece) -->
@@ -456,8 +455,6 @@
     btn.style.opacity = '.3';
     btn.style.pointerEvents = 'none';
   });
-
-  document.getElementById('dq-confirm-btn')!.addEventListener('click', showCaptureForm);
 
   document.getElementById('dq-back-btn')!.addEventListener('click', () => {
     document.getElementById('disqualify-box')!.classList.remove('visible');
