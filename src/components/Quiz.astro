@@ -407,9 +407,6 @@
     // Preenche campos ocultos com respostas do quiz
     (document.getElementById('sf-perfil') as HTMLInputElement).value = answers['1'] || '';
     (document.getElementById('sf-estrutura') as HTMLInputElement).value = answers['2'] || '';
-    // Dispara evento GTM
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push({ event: 'form_submit', form_name: 'quiz_qualificacao', lead_perfil: answers['1'], lead_objetivo: answers['2'] });
     // Mostra formulário, oculta CTA
     wrap.classList.add('visible');
     ctaBtn.style.display = 'none';
@@ -465,5 +462,11 @@
     btn.style.opacity = '1';
     btn.style.pointerEvents = 'auto';
     document.getElementById('quiz-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Dispara form_submit apenas no envio real do formulário de captura
+  document.querySelector<HTMLFormElement>('.sf-form')?.addEventListener('submit', () => {
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'form_submit', form_name: 'quiz_qualificacao', lead_perfil: answers['1'], lead_objetivo: answers['2'] });
   });
 </script>
