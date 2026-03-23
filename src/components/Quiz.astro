@@ -85,7 +85,7 @@
         <select id="ddi-2" class="sf-ddi"></select>
         <input type="tel" id="tel-2" name="phone" data-phone-with-ddi="" maxlength="15" placeholder="(00) 00000-0000" required />
       </div>
-      <input type="submit" value="ENVIAR" class="sf-submit" />
+      <a href="#" class="sf-submit" id="sf-submit-link">ENVIAR</a>
       <div class="cta-micro">🔒 SEM SPAM · SEUS DADOS ESTÃO SEGUROS</div>
       <script src="https://webhook.sellflux.app/v2/script_form.js" is:inline></script>
     </form>
@@ -348,6 +348,7 @@
   }
 
   .sf-submit {
+    display: block;
     width: 100%;
     background: var(--neon);
     color: #0A0A0A;
@@ -361,6 +362,8 @@
     margin-top: 4px;
     transition: background .15s, transform .15s;
     box-shadow: 0 0 20px rgba(223,255,0,.3);
+    text-align: center;
+    text-decoration: none;
   }
   .sf-submit:hover { background: #eeff22; transform: translateY(-2px); }
   .sf-submit:active { transform: translateY(0); }
@@ -464,9 +467,13 @@
     document.getElementById('quiz-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 
-  // Dispara form_submit apenas no envio real do formulário de captura
-  document.querySelector<HTMLFormElement>('.sf-form')?.addEventListener('submit', () => {
+  // Dispara form_submit no clique no link ENVIAR e submete o formulário
+  document.getElementById('sf-submit-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const form = document.querySelector<HTMLFormElement>('.sf-form');
+    if (!form || !form.checkValidity()) { form?.reportValidity(); return; }
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({ event: 'form_submit', form_name: 'quiz_qualificacao', lead_perfil: answers['1'], lead_objetivo: answers['2'] });
+    form.submit();
   });
 </script>
