@@ -46,7 +46,7 @@ import Carousel from '../components/Carousel.astro';
       <div class="h-div"></div>
       <div class="h-stat"><span class="h-n">100%</span><span class="h-l">Online</span></div>
       <div class="h-div"></div>
-      <div class="h-stat h-stat--wide"><span class="h-n h-n--sm">Treinos Totalmente</span><span class="h-l">Personalizados pra Você</span></div>
+      <div class="h-stat h-stat--wide"><span class="h-n h-n--sm">Treinos</span><span class="h-l">Personalizados pra Você</span></div>
     </div>
   </section>
 
@@ -284,6 +284,8 @@ import Carousel from '../components/Carousel.astro';
         <div class="offer-item">✓ App Completo</div>
         <div class="offer-item">✓ WhatsApp com o Professor</div>
         <div class="offer-item">✓ Garantia 7 Dias</div>
+        <div class="offer-item offer-item--full">✓ Planejamento estratégico para 30 dias</div>
+        <div class="offer-item offer-item--full">✓ Acesso vitalício aos treinos via PDF</div>
       </div>
       <!-- TODO: substitua #comprar pelo link de pagamento real -->
       <a href="#comprar" class="buy-btn">QUERO O PLANO STARTER — R$97</a>
@@ -387,6 +389,8 @@ import Carousel from '../components/Carousel.astro';
         <div class="offer-item">✓ App Completo</div>
         <div class="offer-item">✓ WhatsApp com o Professor</div>
         <div class="offer-item">✓ Garantia 7 Dias</div>
+        <div class="offer-item offer-item--full">✓ Planejamento estratégico para 30 dias</div>
+        <div class="offer-item offer-item--full">✓ Acesso vitalício aos treinos via PDF</div>
       </div>
       <!-- TODO: substitua #comprar pelo link de pagamento real -->
       <a href="#comprar" class="buy-btn buy-btn--pulse">QUERO O PLANO STARTER — R$97</a>
@@ -740,6 +744,11 @@ import Carousel from '../components/Carousel.astro';
     color: var(--gray); text-align: left;
     padding: 8px 10px; border: 1px solid var(--border);
     border-radius: 3px; background: rgba(0,0,0,.3);
+  }
+  .offer-item--full {
+    grid-column: 1 / -1;
+    color: var(--white);
+    border-color: rgba(223,255,0,.2);
   }
   .buy-btn {
     display: block; width: 100%;
