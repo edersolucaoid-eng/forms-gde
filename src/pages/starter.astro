@@ -152,10 +152,9 @@ import Carousel from '../components/Carousel.astro';
     <p class="section-sub">Acesso completo à versão premium — os mesmos treinos dos alunos de pacotes mais longos.</p>
 
     <div class="mockup-row">
-      <!-- PLACEHOLDER: adicione prints reais do app -->
-      <div class="mockup-phone"><div class="mockup-screen">[ TELA INICIAL ]</div></div>
-      <div class="mockup-phone"><div class="mockup-screen">[ TREINO DO DIA ]</div></div>
-      <div class="mockup-phone"><div class="mockup-screen">[ PROGRESSÃO ]</div></div>
+      <div class="mockup-phone"><img src="/images/app-screen-1.webp" alt="App Método Goleiro 2.0" /></div>
+      <div class="mockup-phone"><img src="/images/app-screen-2.webp" alt="App Método Goleiro 2.0" /></div>
+      <div class="mockup-phone"><img src="/images/app-screen-3.webp" alt="App Método Goleiro 2.0" /></div>
     </div>
   </section>
 
@@ -607,17 +606,12 @@ import Carousel from '../components/Carousel.astro';
     flex-wrap: wrap; margin-top: 24px;
   }
   .mockup-phone {
-    width: 160px; aspect-ratio: 9/19;
+    flex: 1; min-width: 140px; max-width: 200px;
     border: 1px solid var(--border); border-radius: 16px;
     background: var(--card); overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
     box-shadow: 0 0 30px rgba(223,255,0,.05);
   }
-  .mockup-screen {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: .6rem; color: var(--muted);
-    letter-spacing: .05em; text-align: center; padding: 8px;
-  }
+  .mockup-phone img { width: 100%; height: auto; display: block; }
 
   /* ── ENTREGÁVEIS ── */
   .deliverables { display: flex; flex-direction: column; gap: 14px; margin-top: 8px; }
