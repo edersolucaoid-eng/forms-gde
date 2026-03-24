@@ -329,8 +329,7 @@ import Carousel from '../components/Carousel.astro';
     <h2 class="section-title">Não treinamos todo mundo.<br/>Treinamos só goleiros.</h2>
 
     <div class="authority-wrap">
-      <!-- PLACEHOLDER: substitua pela foto real do professor -->
-      <div class="authority-img-placeholder">[ FOTO DO PROFESSOR ]</div>
+      <img src="/images/quem-somos.webp" alt="Método Goleiro 2.0" class="authority-img" />
       <div class="authority-body">
         <div class="authority-name">[ Nome do Professor ]</div>
         <div class="authority-role">Especialista em Preparação Física para Goleiros</div>
@@ -787,14 +786,10 @@ import Carousel from '../components/Carousel.astro';
     display: flex; gap: 28px; align-items: flex-start;
     margin-top: 8px; flex-wrap: wrap;
   }
-  .authority-img-placeholder {
-    width: 160px; height: 200px; flex-shrink: 0;
+  .authority-img {
+    width: 100%; max-width: 340px; flex-shrink: 0;
     border: 1px solid var(--border); border-radius: 4px;
-    background: var(--card);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: .65rem; color: var(--muted);
-    letter-spacing: .08em; text-align: center; padding: 8px;
+    display: block;
   }
   .authority-name {
     font-family: 'Bebas Neue', sans-serif;
