@@ -27,9 +27,19 @@ import Carousel from '../components/Carousel.astro';
       <strong>Sem mensalidade. Sem renovação automática.</strong>
     </p>
 
-    <!-- PLACEHOLDER: substitua pelo hero image / vídeo de alta conversão -->
     <div class="hero-img-wrap">
-      <div class="hero-img-placeholder">[ IMAGEM / VÍDEO PRINCIPAL ]</div>
+      <div class="hero-img-labels">
+        <span class="hero-label hero-label--before">ANTES DO MÉTODO</span>
+        <span class="hero-label hero-label--after">DEPOIS DO MÉTODO</span>
+      </div>
+      <img
+        src="/images/hero-antes-depois.webp"
+        alt="Antes e depois do Método Goleiro 2.0"
+        width="1376"
+        height="768"
+        loading="eager"
+        decoding="async"
+      />
     </div>
 
     <div class="hero-stats">
@@ -492,13 +502,24 @@ import Carousel from '../components/Carousel.astro';
     width: 100%; border-radius: 6px; overflow: hidden;
     border: 1px solid var(--border);
     box-shadow: 0 0 60px rgba(223,255,0,.06);
+    position: relative;
   }
-  .hero-img-placeholder {
-    width: 100%; aspect-ratio: 16/9;
-    background: var(--card);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--muted); font-family: 'JetBrains Mono', monospace;
-    font-size: .75rem; letter-spacing: .1em;
+  .hero-img-wrap img { width: 100%; height: auto; display: block; }
+  .hero-img-labels {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; z-index: 2; pointer-events: none;
+  }
+  .hero-label {
+    flex: 1; text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(.75rem, 2.5vw, 1.1rem);
+    letter-spacing: .12em; padding: 8px 4px;
+  }
+  .hero-label--before {
+    background: rgba(0,0,0,.65); color: #aaa;
+  }
+  .hero-label--after {
+    background: rgba(10,26,0,.75); color: var(--neon);
   }
 
   .hero-stats {
