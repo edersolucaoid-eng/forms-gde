@@ -4,11 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Método Goleiro 2.0 | Preparação Física para Goleiros</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="+1.200 goleiros já treinaram com o Método Goleiro 2.0. Musculação específica para goleiros — planos individualizados, 100% online, sem mensalidade. Responda 4 perguntas e descubra seu perfil." />
+  <meta property="og:title" content="Método Goleiro 2.0 | Preparação Física para Goleiros" />
+  <meta property="og:description" content="+1.200 goleiros já treinaram com o Método Goleiro 2.0. Musculação específica para goleiros — planos individualizados, 100% online, sem mensalidade." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="Novas imagens/Captura de tela 2026-03-20 092056.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:url" content="https://metodo.goleirodeelite.com/" />
+  <!-- Preload da imagem principal (LCP) -->
+  <link rel="preload" as="image" href="Novas imagens/Captura de tela 2026-03-20 092056.webp" />
+  <!-- Preload das fontes críticas -->
+  <link rel="preload" as="font" href="fonts/bebas-400-latin.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="fonts/barlow-700-latin.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="fonts/barlow-400-latin.woff2" type="font/woff2" crossorigin />
 
   <style>
+    /* ── Fontes auto-hospedadas ───────────────────────────────── */
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/barlow-400-latin-ext.woff2') format('woff2'); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/barlow-400-latin.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/barlow-600-latin-ext.woff2') format('woff2'); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:600; font-display:swap; src:url('fonts/barlow-600-latin.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/barlow-700-latin-ext.woff2') format('woff2'); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/barlow-700-latin.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:800; font-display:swap; src:url('fonts/barlow-800-latin-ext.woff2') format('woff2'); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family:'Barlow Condensed'; font-style:normal; font-weight:800; font-display:swap; src:url('fonts/barlow-800-latin.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family:'Bebas Neue'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/bebas-400-latin-ext.woff2') format('woff2'); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family:'Bebas Neue'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/bebas-400-latin.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400-latin-ext.woff2') format('woff2'); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:400; font-display:swap; src:url('fonts/jetbrains-400-latin.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/jetbrains-700-latin-ext.woff2') format('woff2'); unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+    @font-face { font-family:'JetBrains Mono'; font-style:normal; font-weight:700; font-display:swap; src:url('fonts/jetbrains-700-latin.woff2') format('woff2'); unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
     /* ── Reset ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -818,7 +844,7 @@
 <main class="page">
 
   <!-- ── HERO ───────────────────────────────────────────────── -->
-  <div class="hero-strip reveal">
+  <div class="hero-strip">
     <div class="live-badge">
       <div class="live-dot"></div>
       Vagas Limitadas · Turma 2026
@@ -854,7 +880,7 @@
   <div class="hr"></div>
 
   <!-- ── QUIZ CARD ──────────────────────────────────────────── -->
-  <div class="card reveal" id="quiz-card" style="transition-delay:.1s">
+  <div class="card" id="quiz-card">
 
     <div class="card-label">Avaliação de Perfil</div>
 
@@ -1017,7 +1043,7 @@
     <div class="section-tag">Quem Somos</div>
     <div class="qs-card">
       <div class="qs-img-wrap">
-        <img src="images/Captura de tela 2026-03-20 092056.png" alt="@goleirodeeliteof" class="qs-img" />
+        <img src="Novas imagens/Captura de tela 2026-03-20 092056.webp" alt="@goleirodeeliteof" class="qs-img" width="580" height="180" fetchpriority="high" />
         <div class="qs-img-fade"></div>
       </div>
       <div class="qs-body">
@@ -1062,12 +1088,12 @@
 
     <div class="car-wrapper">
       <div class="car-track" id="carousel-track">
-        <div class="car-slide"><img src="images/fde6eb9c-4f4c-4cdf-971c-25b987e357bd.jpeg" alt="Resultado Método EFV" /></div>
-        <div class="car-slide"><img src="images/WhatsApp Image 2024-09-28 at 17.09.56.jpeg" alt="Resultado Método EFV" /></div>
-        <div class="car-slide"><img src="images/WhatsApp Image 2024-09-28 at 17.10.06.jpeg" alt="Resultado Método EFV" /></div>
-        <div class="car-slide"><img src="images/fde6eb9c-4f4c-4cdf-971c-25b987e357bd.jpeg" alt="Resultado Método EFV" /></div>
-        <div class="car-slide"><img src="images/WhatsApp Image 2024-09-28 at 17.09.56.jpeg" alt="Resultado Método EFV" /></div>
-        <div class="car-slide"><img src="images/WhatsApp Image 2024-09-28 at 17.10.06.jpeg" alt="Resultado Método EFV" /></div>
+        <div class="car-slide"><img src="novocarrossel/WhatsApp Image 2026-03-20 at 23.45.35 (1).webp" alt="Resultado Método Goleiro 2.0" width="580" height="435" loading="lazy" /></div>
+        <div class="car-slide"><img src="novocarrossel/WhatsApp Image 2026-03-20 at 23.45.35.webp" alt="Resultado Método Goleiro 2.0" width="580" height="435" loading="lazy" /></div>
+        <div class="car-slide"><img src="novocarrossel/provas-sociais-base-1.webp" alt="Resultado Método Goleiro 2.0" width="580" height="435" loading="lazy" /></div>
+        <div class="car-slide"><img src="novocarrossel/provas-sociais-performance-2.webp" alt="Resultado Método Goleiro 2.0" width="580" height="435" loading="lazy" /></div>
+        <div class="car-slide"><img src="novocarrossel/provas-sociais-performance-3.webp" alt="Resultado Método Goleiro 2.0" width="580" height="435" loading="lazy" /></div>
+        <div class="car-slide"><img src="novocarrossel/provas-sociais-performance-4.webp" alt="Resultado Método Goleiro 2.0" width="580" height="435" loading="lazy" /></div>
       </div>
       <button class="car-btn car-prev" onclick="carouselMove(-1)" aria-label="Anterior">&#8592;</button>
       <button class="car-btn car-next" onclick="carouselMove(1)" aria-label="Próximo">&#8594;</button>
@@ -1077,6 +1103,9 @@
       <button class="dot active" onclick="carouselGoTo(0)"></button>
       <button class="dot" onclick="carouselGoTo(1)"></button>
       <button class="dot" onclick="carouselGoTo(2)"></button>
+      <button class="dot" onclick="carouselGoTo(3)"></button>
+      <button class="dot" onclick="carouselGoTo(4)"></button>
+      <button class="dot" onclick="carouselGoTo(5)"></button>
     </div>
   </div>
 
@@ -1198,7 +1227,7 @@
   }
 
   // ── Carousel ──────────────────────────────────────────────────
-  const TOTAL = 3;
+  const TOTAL = 6;
   let current = 0, autoTimer;
 
   function carouselRender() {
@@ -1208,6 +1237,11 @@
   function carouselMove(dir) { current = (current + dir + TOTAL) % TOTAL; carouselRender(); resetAuto(); }
   function carouselGoTo(idx) { current = idx; carouselRender(); resetAuto(); }
   function resetAuto() { clearInterval(autoTimer); autoTimer = setInterval(() => carouselMove(1), 3500); }
+
+  // Pausa o carousel quando a aba está em background
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { clearInterval(autoTimer); } else { resetAuto(); }
+  });
 
   const track = document.getElementById('carousel-track');
   let touchX = 0;
